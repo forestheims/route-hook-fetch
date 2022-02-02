@@ -1,6 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 export default function Header() {
-  return <header>This is a Header</header>;
+  return (
+    <header>
+      <Link to="/">Home</Link>
+      <Link to="/elements">Elements</Link>
+    </header>
+  );
 }

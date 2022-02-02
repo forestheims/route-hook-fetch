@@ -23,10 +23,10 @@ function App() {
       <Composition>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home displayed={displayed} />
           </Route>
-          <Route>
-            <Elements />
+          <Route path="/elements">
+            <Elements displayed={displayed} setDisplayed={setDisplayed} />
           </Route>
         </Switch>
       </Composition>
