@@ -4,18 +4,24 @@ import './App.css';
 import Composition from './views/Composition/Composition';
 import Home from './views/Home/Home';
 import Elements from './views/Elements/Elements';
-import CharacterDetail from './views/CharacterDetail/CharatcerDetail';
+import CharacterDetail from './views/CharacterDetail/CharacterDetail';
 
 function App() {
   const [displayed, setDisplayed] = useState([]);
   const [rtsNQurs, setRtsNQurs] = useState('api/v1/characters/random?count=10');
+  const [individual, setIndividual] = useState({});
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
         `https://last-airbender-api.herokuapp.com/${rtsNQurs}`
       );
       const data = await response.json();
-      setDisplayed(data);
+      if (rtsNQurs.includes('random')) {
+        setDisplayed(data);
+      } else {
+        setIndividual(data);
+      }
     };
     fetchData();
   }, [rtsNQurs]);
@@ -27,11 +33,12 @@ function App() {
           <Route exact path="/">
             <Home displayed={displayed} />
           </Route>
-          <Route path="/elements">
-            <Elements displayed={displayed} setDisplayed={setDisplayed} />
-          </Route>
           <Route path="/character/:_id">
-            <CharacterDetail />
+            <CharacterDetail
+              individual={individual}
+              displayed={displayed}
+              setRtsNQurs={setRtsNQurs}
+            />
           </Route>
         </Switch>
       </Composition>

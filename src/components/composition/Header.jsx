@@ -6,7 +6,6 @@ export default function Header() {
   return (
     <header>
       <Link to="/">Home</Link>
-      <Link to="/elements">Elements</Link>
     </header>
   );
 }
