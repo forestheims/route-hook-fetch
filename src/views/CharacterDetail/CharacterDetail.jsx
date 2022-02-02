@@ -6,7 +6,7 @@ export default function CharacterDetail({ individual, setRtsNQurs }) {
   const { _id } = useParams();
   setRtsNQurs(`api/v1/characters/${_id}`);
 
-  const { name, photoUrl, affiliation, allies, enemies } = individual;
+  const { name, photoUrl, affiliation } = individual;
 
   return (
     <div>
