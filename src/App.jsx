@@ -35,7 +35,6 @@ function App() {
           <Route path="/character/:_id">
             <CharacterDetail
               individual={individual}
-              displayed={displayed}
               setRtsNQurs={setRtsNQurs}
             />
           </Route>
