@@ -7,23 +7,25 @@ import CharacterDetail from './views/CharacterDetail/CharacterDetail';
 
 function App() {
   const [displayed, setDisplayed] = useState([]);
-  const [rtsNQurs, setRtsNQurs] = useState('api/v1/characters/random?count=10');
+  const [routesAndQueries, setRoutesAndQueries] = useState(
+    'api/v1/characters/random?count=10'
+  );
   const [individual, setIndividual] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://last-airbender-api.herokuapp.com/${rtsNQurs}`
+        `https://last-airbender-api.herokuapp.com/${routesAndQueries}`
       );
       const data = await response.json();
-      if (rtsNQurs.includes('random')) {
+      if (routesAndQueries.includes('random')) {
         setDisplayed(data);
       } else {
         setIndividual(data);
       }
     };
     fetchData();
-  }, [rtsNQurs]);
+  }, [routesAndQueries]);
 
   return (
     <BrowserRouter>
@@ -35,7 +37,7 @@ function App() {
           <Route path="/character/:_id">
             <CharacterDetail
               individual={individual}
-              setRtsNQurs={setRtsNQurs}
+              setRoutesAndQueries={setRoutesAndQueries}
             />
           </Route>
         </Switch>
