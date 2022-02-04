@@ -1,4 +1,8 @@
-import { screen, render } from '@testing-library/react';
+import {
+  screen,
+  render,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import CharacterDetail from './CharacterDetail';
 
@@ -27,6 +31,8 @@ test('the ', async () => {
       </Route>
     </MemoryRouter>
   );
+
+  waitForElementToBeRemoved(screen.getByText(/loading/i));
 
   expect(await screen.findAllByRole('img')).toHaveLength(1);
   expect(screen.getAllByRole('heading')).toHaveLength(2);
